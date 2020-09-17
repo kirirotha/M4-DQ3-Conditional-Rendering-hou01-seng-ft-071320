@@ -1,35 +1,41 @@
 import React from 'react'
 
+
+
+
 const MenuBar = (props) => {
 
-  /*
+  let handleClick = (e) => {
+    e.persist()
+    props.changeState(e.target.id)
+  }
 
-  The 'a' tags below are the menu items. Think about the way a menu 
-  should work. When you click a menu item, the button typically becomes
-  'active' to indicate that it is currently selected. How could we achieve
-  this programatically? What other behavior do we expect when we click
-  on a menu item? Do we need state in this component, and if not, how can
-  this component be made aware of what is currently the active menu item?
+  let buttonChange = (id) => {
+    if (props.currentSelection === id) {
+      return "item active"
+      } else {
+        return "item"
+      }
+  }
 
-  */
+  const renderButtons = () => {
+    const idList = [['profile', 'user large icon'], ['photo', 'photo large icon'], ['cocktail', 'cocktail large icon'], ['pokemon', ' themeisle large icon']]
+    let bRender = idList.map(id =>{
+      return (
+        <a className={buttonChange(id[0])} id={id[0]} onClick={handleClick} key ={id[0]}>
+        <i className={id[1]} id={id[0]}/>
+      </a>
+      )
+    })
+    return bRender
+  
+  
+  }
 
   return (
+    
     <div className="ui four item menu">
-      <a className="item active" id="profile">
-        <i className="user large icon" id="profile"/>
-      </a>
-
-      <a className="item" id="photo">
-        <i className="photo large icon" id="photo"/>
-      </a>
-
-      <a className="item" id="cocktail">
-        <i className="cocktail large icon" id="cocktail"/>
-      </a>
-
-      <a className="item" id="pokemon"> 
-        <i className=" themeisle large icon" id="pokemon"/>
-      </a>
+    {renderButtons()}
     </div>
   )
 
